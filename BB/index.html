@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="utf-8">
+   <link href='https://fonts.googleapis.com/css2?family=Averia+Serif+Libre:wght@300&display=swap' rel='stylesheet' type='text/css'>
+  
+   <style>
+
+    .cont { 
+    	height:100vh;
+    	display:flex;
+    	align-items:center;
+    	justify-content: center;
+    	box-sizing:border-box;
+    }
+   	#child {	
+   		width:30rem; 
+   		height:20rem; 
+   		background-color: #fff;
+        text-align: center;
+        border-radius: 7px;
+       font-family: 'Averia Serif Libre', cursive;
+   		}
+
+   button {
+       	background-color:  #E0F048;
+       	padding: 5px;
+       	font-size: 1rem;
+       	border: 2px groove #000;
+       
+
+   	  }
+  #quote {
+  	  height:10rem;
+  	  padding:1rem 20px 20px 20px;
+  	  font-size: 1.3rem;
+  } 
+   	 button:hover {
+
+   	 }
+    </style>
+</head>
+
+
+<body style = "background-image:linear-gradient(to bottom, #3D6413 ,#C6BB1B);">
+
+ <div class="cont">
+
+  <div id="child" >
+    <h3 id ="quote"></h3>
+    <h4 id="author" style="height:1rem; margin-top:-1rem"></h4>
+     <button id="button"> One more, bitch</button>
+
+  </div>
+
+ </div>	
+
+</body>
+ 
+
+
+
+<script type="text/javascript">
+
+const child = document.getElementById('quote');
+const btn  = document.getElementById('button');
+const author  = document.getElementById('author');
+
+
+btn.addEventListener("click", todos);
+
+
+   function todos() {
+
+       fetch('https://breaking-bad-quotes.herokuapp.com/v1/quotes')
+       .then( res => res.json())
+       .then( data => {
+ 	          console.log(data[0].author, data[0].quote);
+              child.innerHTML = data[0].quote ;
+              author.innerHTML = data[0].author;
+        })
+       .catch( err => console.log(err));
+ }
+
+//
+
+
+// todos()
+ //.then( data => {
+ 	//console.log(data[0].author, data[0].quote);
+   //let quote= data[0].quote;    child.innerHTML = quote;
+
+ //})
+ //.catch( err => {console.log(err)});
+
+
+
+//'https://jsonplaceholder.typicode.com/todos/  '
+
+
+
+
+
+</script>
+</html>
